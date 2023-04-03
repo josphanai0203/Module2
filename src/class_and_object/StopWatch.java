@@ -43,14 +43,16 @@ public class StopWatch {
 		}
 		System.out.println("Bắt đầu sắp xếp chọn ");
 		long min = array[0];
+		int ind = 0;
 		sw.start();
 		for (int i = 0; i < array.length; i++) {
 			for (int j = i + 1; j < array.length; j++) {
 				if (array[j] < min) {
+					ind = j;
 					min = array[j];
 				}
 			}
-			sw.swap(array[i], min);
+			sw.swap(array[i], array[ind]);
 
 		}
 		sw.stop();
