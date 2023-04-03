@@ -1,4 +1,4 @@
-package VongLap;
+package vong_lap;
 
 import java.io.IOException;
 import java.io.OutputStream;

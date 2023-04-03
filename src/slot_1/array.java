@@ -1,4 +1,4 @@
-package slot1;
+package slot_1;
 
 import java.util.ArrayList;
 
