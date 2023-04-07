@@ -1,4 +1,4 @@
-package aaccess_modifier;
+package aaccess_modifier.student;
 
 public class Student {
 	private String name;

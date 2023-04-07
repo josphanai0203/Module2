@@ -1,4 +1,4 @@
-package aaccess_modifier;
+package aaccess_modifier.circle;
 
 public class Circle {
 	private double radius =1.0;

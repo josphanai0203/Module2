@@ -1,4 +1,4 @@
-package aaccess_modifier;
+package aaccess_modifier.student;
 
 public class TestStudent {
 	public static void main(String[] args) {
