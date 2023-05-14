@@ -35,8 +35,6 @@ public class Word {
 		this.pronoun = pronoun;
 	}
 
-	
-
 	public ArrayList<String> getNoun() {
 		return noun;
 	}
@@ -71,14 +69,20 @@ public class Word {
 
 	public static String arrayToString(ArrayList<String> arr) {
 		String result = "";
+		boolean checkSentence = false;
 		for (String element : arr) {
-			if(element == "-s") {
-				result += "= ";
+			if (element == "-s") {
+				checkSentence = true;
 				continue;
-			}else {
-				result += "- ";
 			}
-			result +=element + "\n";
+			if (checkSentence) {
+				result += "= ";
+				checkSentence = false;
+			} else {
+				result += "- ";
+
+			}
+			result += element + "\n";
 		}
 		return result;
 
@@ -97,15 +101,15 @@ public class Word {
 			String nounResult = arrayToString(noun);
 			result += "* Danh từ \n" + nounResult + "\n";
 		}
-		if(adjective.size() != 0) {
+		if (adjective.size() != 0) {
 			String adjectiveResult = arrayToString(adjective);
 			result += "* Tính từ \n" + adjectiveResult + "\n";
 		}
-		if(verb.size() != 0) {
+		if (verb.size() != 0) {
 			String verbResult = arrayToString(verb);
 			result += "* Động từ \n" + verbResult + "\n";
 		}
-		if(synonymous.size() != 0) {
+		if (synonymous.size() != 0) {
 			String synonymousResult = arrayToString(synonymous);
 			result += "* Tương đồng \n" + synonymousResult + "\n";
 		}

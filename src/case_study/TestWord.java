@@ -8,6 +8,8 @@ public static void main(String[] args) {
 	w1.setVerb("asd");
 	w1.setVerb("sd");
 	w1.setVerb("ads");
+	w1.setVerb("-s");
+	w1.setVerb("123");
 	System.out.println(w1);
 	
 }

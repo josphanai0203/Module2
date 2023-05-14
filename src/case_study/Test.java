@@ -9,10 +9,9 @@ public class Test {
 		String actionStr = sc.nextLine();
 		String[] actionArr = actionStr.split(" ");
 		String action = actionArr[0];
-		String str = "123";
+		Dictionary ds = new Dictionary();
 		switch (action) {
 		case "lookup":
-			System.out.println("-" +str +"\n"+str);
 			break;
 		case "drop":
 
