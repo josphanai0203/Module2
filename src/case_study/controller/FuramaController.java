@@ -70,6 +70,8 @@ public class FuramaController {
 				
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
+			}finally {
+				sc.close();
 			}
 			switch (choice) {
 			case 1:
