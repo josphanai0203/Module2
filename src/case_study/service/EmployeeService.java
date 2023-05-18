@@ -11,7 +11,7 @@ import case_study.model.Validator;
 import case_study.service.impl.IEmployeeService;
 
 public class EmployeeService extends PersonService implements IEmployeeService {
-	public static Scanner sc = new Scanner(System.in);
+	public Scanner sc = new Scanner(System.in);
 	public static List<Employee> employees = new ArrayList<>();
 	public static List<String> employeeIds = new ArrayList<>();
 
@@ -55,12 +55,12 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 	}
 
 	public String enterEmployeeId() {
-		String employeeId = "";
+		String employeeIdstr = "";
 		while (true) {
 			System.out.println("Enter employee id (NV-XXXX): ");
-			employeeId = sc.nextLine();
-			if (employeeId.matches(Validator.REGEX_EMPLOYEE_ID)) {
-				return employeeId;
+			employeeIdstr = sc.nextLine();
+			if (employeeIdstr.matches(Validator.REGEX_EMPLOYEE_ID)) {
+				return employeeIdstr;
 			} else {
 				System.out.println("The email you just entered is  invalid !Please re-enter");
 			}
@@ -84,8 +84,6 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			} catch (InputMismatchException e) {
 				System.out.println("Input Wrong!Please re-enter");
 				continue;
-			}finally {
-				newSc.close();
 			}
 			switch (choice) {
 			case 1:
@@ -126,8 +124,6 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			} catch (InputMismatchException e) {
 				System.out.println("Input Wrong!Please re-enter");
 				continue;
-			}finally {
-				newSc.close();
 			}
 			switch (choice) {
 			case 1:
@@ -166,8 +162,6 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			} catch (InputMismatchException e) {
 				System.out.println("Input Wrong!Please re-enter");
 				continue;
-			}finally {
-				newSc.close();
 			}
 			if(salary>0) {
 				return salary;

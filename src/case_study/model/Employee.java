@@ -51,7 +51,7 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return "Employee Id : " + employeeId + "\nFull Name : " + fullName + "\nDate of birth : " + dateOfBirth
+		return "Employee Id : " + employeeId + "\nFull Name : " + fullName + "\nDate of birth : " + String.format("%d/%d/%d", dateOfBirth.get(Calendar.DATE),dateOfBirth.get(Calendar.MONTH)+1,dateOfBirth.get(Calendar.YEAR))
 				+ "\nIdentity Card : " + identityCard + "\nPhone Number : " + phoneNumber + "\nEmail : " + email
 				+ "\nQualification : " + qualification +"\nPosition : "+ position + "\nSalary : "+ salary;
 	}

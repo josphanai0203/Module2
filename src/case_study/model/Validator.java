@@ -12,7 +12,7 @@ public class Validator {
 	public static final String REGEX_EMPLOYEE_ID= "^[N][V][-][0-9]{4}";
 
 	public static boolean isValidDate(String date) {
-		String dateFormat = "DD/MM/YYYY";
+		String dateFormat = "dd/MM/yyyy";
 		DateFormat sdf = new SimpleDateFormat(dateFormat);
 		try {
 			sdf.parse(date);

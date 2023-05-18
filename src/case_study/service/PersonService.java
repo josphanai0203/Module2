@@ -108,7 +108,7 @@ public class PersonService implements IPersonService {
 		}
 	}
 	public Calendar stringToCalendar(String date) {
-		DateFormat df = new SimpleDateFormat("DD/MM/YYYY");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar c = null;
 		java.util.Date d;
 		try {
