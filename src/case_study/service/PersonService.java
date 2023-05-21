@@ -19,7 +19,9 @@ public class PersonService implements IPersonService {
 		while (!check) {
 			System.out.println("Enter " + messString);
 			name = sc.nextLine();
-			if (!name.matches(Validator.REGEX_FULL_NAME)) {
+			if(name.isEmpty()) {
+				System.out.println("The input is empty !Please re-enter\"");
+			}else if (!name.matches(Validator.REGEX_FULL_NAME)) {
 				System.out.println("The name you just entered is  invalid !Please re-enter");
 			} else {
 				check = true;
@@ -33,10 +35,11 @@ public class PersonService implements IPersonService {
 	public Calendar enterdateOfBirth(){
 		String date;
 		while (true) {
-
 			System.out.println("Enter Date of birth(DD/MM/YYYY) : ");
 			date = sc.nextLine();
-			if (Validator.isValidDate(date)) {
+			if(date.isEmpty()) {
+				System.out.println("The input is empty !Please re-enter\"");
+			}else if (Validator.isValidDate(date)) {
 				Calendar c = stringToCalendar(date);
 				if (isEnoughAge(c)) {
 					return c;
@@ -55,7 +58,10 @@ public class PersonService implements IPersonService {
 		while (true) {
 			System.out.println("Enter Identity Card (9 Numbers) : ");
 			identityCard = sc.nextLine();
-			if (identityCard.matches(Validator.REGEX_IDENTITY_CARD)) {
+			
+			if(identityCard.isEmpty()) {
+				System.out.println("The input is empty !Please re-enter\"");
+			}else if (identityCard.matches(Validator.REGEX_IDENTITY_CARD)) {
 				return identityCard;
 			} else {
 				System.out.println("The Identity Card you just entered is  invalid !Please re-enter");
@@ -70,7 +76,9 @@ public class PersonService implements IPersonService {
 		while (true) {
 			System.out.println("Enter phone number (10 Numbers) : ");
 			phoneNumber = sc.nextLine();
-			if (phoneNumber.matches(Validator.REGEX_PHONE_NUMBER)) {
+			if(phoneNumber.isEmpty()) {
+				System.out.println("The input is empty !Please re-enter\"");
+			}else if (phoneNumber.matches(Validator.REGEX_PHONE_NUMBER)) {
 				return phoneNumber;
 			} else {
 				System.out.println("The phone number you just entered is  invalid !Please re-enter");
@@ -85,7 +93,9 @@ public class PersonService implements IPersonService {
 		while (true) {
 			System.out.println("Enter email: ");
 			email = sc.nextLine();
-			if (email.matches(Validator.REGEX_EMAIL)) {
+			if(email.isEmpty()) {
+				System.out.println("The input is empty !Please re-enter\"");
+			}else if (email.matches(Validator.REGEX_EMAIL)) {
 				return email;
 			} else {
 				System.out.println("The email you just entered is  invalid !Please re-enter");

@@ -5,6 +5,7 @@
 package vong_lap;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -23,31 +24,37 @@ public class Lab2 {
     }
 
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
-        int count = 0;
-        boolean check = true;
-        while (check) {
-            try {
-                System.out.println("Enter sum of branch : ");
-                String line = reader.nextLine();
-                Scanner sc = new Scanner(line);
-                count = sc.nextInt();
-                if (count > 0) {
-                    check = false;
-                } else {
-                    System.out.println("Number must greater than 0");
-
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Wrong input ! please Enter Again!");
-
-            }
-        }
-        Lab2 o = new Lab2(count);
+    	int totalOfBranch = enterTotalOfBranch();
+        Lab2 o = new Lab2(totalOfBranch);
         o.enter();
         o.displayInfo();
     }
+    public static int enterTotalOfBranch() {
+    	 Scanner reader = new Scanner(System.in);
+    	 int count = 0;
+         boolean check = true;
+         while (check) {
+             try {
+                 System.out.println("Enter sum of branch : ");
+                 String line = reader.nextLine();
+                 Scanner sc = new Scanner(line);
+                 count = sc.nextInt();
+                 if (count > 0) {
+                     check = false;
+                 } else {
+                     System.out.println("Number must greater than 0");
 
+                 }
+             } catch (InputMismatchException e) {
+                 System.out.println("Wrong input ! please Enter Again!");
+
+             } catch (NoSuchElementException e) {
+             	System.out.println("Wrong input ! please Enter Again!");
+
+ 			}
+         }
+         return count;
+    }
     public void enter() {
         for (int i = 0; i < this.branchNames.length; i++) {
             this.branchNames[i] = this.enterBranch("name of branch " + (i + 1));
@@ -56,12 +63,12 @@ public class Lab2 {
     }
     public String enterBranch(String messString) {
     	String nameBranch = "";
-    	String regex = "^[\\w]+$";
+    	String regex = "^[a-zA-Z][\\w]+((\\s[\\w])+)?";
     	boolean check =false;
     	while(!check) {
     		nameBranch = enterInput(messString);
     		if(!nameBranch.matches(regex)) {
-    			System.out.println("Name Brach cointain special character!1!");
+    			System.out.println("Name Brach cointain special character or has number in start!!");
     		}else {
     			check = true;
     		}

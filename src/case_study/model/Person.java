@@ -23,8 +23,8 @@ public abstract class Person {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public Calendar getDateOfBirth() {
-		return dateOfBirth;
+	public String getDateOfBirth() {
+		return String.format("%d/%d/%d", dateOfBirth.get(Calendar.DATE),dateOfBirth.get(Calendar.MONTH)+1,dateOfBirth.get(Calendar.YEAR));
 	}
 	public void setDateOfBirth(Calendar dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;

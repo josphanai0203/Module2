@@ -5,8 +5,13 @@ import java.util.Scanner;
 import case_study.service.EmployeeService;
 
 public class FuramaController {
+	private static boolean isReadData = false;
 	
 	public void displayMainMenu() {
+		if(!isReadData) {
+			EmployeeService.getData();
+			isReadData = true;
+		}
 		int choice = 0 ;
 		Scanner sc = new Scanner(System.in);
 		while(true) {
