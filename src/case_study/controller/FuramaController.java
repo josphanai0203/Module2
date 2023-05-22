@@ -2,19 +2,24 @@ package case_study.controller;
 
 import java.util.Scanner;
 
+import case_study.service.CustomerService;
 import case_study.service.EmployeeService;
 
 public class FuramaController {
 	private static boolean isReadData = false;
+	private static EmployeeService es = new EmployeeService();
+	private static CustomerService cs = new CustomerService();
 	
+
 	public void displayMainMenu() {
-		if(!isReadData) {
+		if (!isReadData) {
 			EmployeeService.getData();
+			CustomerService.getData();
 			isReadData = true;
 		}
-		int choice = 0 ;
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Menu ===================");
 			System.out.println("1.	Employee Management");
 			System.out.println("2.	Customer Management");
@@ -26,13 +31,13 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
 			switch (choice) {
 			case 1:
-				
+
 				displayEmployeeManagementMenu();
 				break;
 			case 2:
@@ -52,17 +57,18 @@ public class FuramaController {
 				System.out.println("Your choice is Wrong !  please enter again !");
 				break;
 			}
-			if(choice == 6) {
-				System.exit(0);;
+			if (choice == 6) {
+				System.exit(0);
+				;
 				break;
 			}
-			}
+		}
 	}
+
 	public void displayEmployeeManagementMenu() {
-		EmployeeService es = new EmployeeService();
-		int choice = 0 ;
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Employee Management  ===================");
 			System.out.println("1	Display list employees");
 			System.out.println("2	Add new employee");
@@ -72,7 +78,7 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
@@ -86,18 +92,19 @@ public class FuramaController {
 			case 3:
 				es.edit();
 				break;
-			case 4:
-				displayMainMenu();
-				break;
 			default:
 				break;
 			}
+			if(choice == 4) {
+				break;
 			}
+		}
 	}
+
 	public void displayCustomerManagement() {
-		int choice = 0 ;
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Customer Management  ===================");
 			System.out.println("1.	Display list customers");
 			System.out.println("2	Add new employee");
@@ -107,32 +114,33 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
 			switch (choice) {
 			case 1:
-				
+				cs.display();
 				break;
 			case 2:
-				
+				cs.create();
 				break;
 			case 3:
-				
-				break;
-			case 4:
-				displayMainMenu();
+				cs.edit();
 				break;
 			default:
 				break;
 			}
+			if(choice == 4) {
+				break;
 			}
+		}
 	}
-	public void displayFacilityManagement () {
-		int choice = 0 ;
+
+	public void displayFacilityManagement() {
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Facility Management   ===================");
 			System.out.println("1.	Display list customers");
 			System.out.println("2.	Add new customer");
@@ -142,32 +150,33 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
 			switch (choice) {
 			case 1:
-				
+
 				break;
 			case 2:
-				
+
 				break;
 			case 3:
-				
-				break;
-			case 4:
-				displayMainMenu();
+
 				break;
 			default:
 				break;
 			}
+			if(choice == 4) {
+				break;
 			}
+		}
 	}
-	public void displayBookingManagerment  () {
-		int choice = 0 ;
+
+	public void displayBookingManagerment() {
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Booking Managerment    ===================");
 			System.out.println("1.	Add new booking");
 			System.out.println("2.	Display list booking");
@@ -179,38 +188,39 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
 			switch (choice) {
 			case 1:
-				
+
 				break;
 			case 2:
-				
+
 				break;
 			case 3:
-				
+
 				break;
 			case 4:
-				
+
 				break;
 			case 5:
-				
-				break;
-			case 6:
-				displayMainMenu();
+
 				break;
 			default:
 				break;
 			}
+			if(choice == 6) {
+				break;
 			}
+		}
 	}
-	public void displayPromotionManagement () {
-		int choice = 0 ;
+
+	public void displayPromotionManagement() {
+		int choice = 0;
 		Scanner sc = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("============== Promotion Management   ===================");
 			System.out.println("1.	Display list customers use service");
 			System.out.println("2.	Display list customers get voucher");
@@ -219,24 +229,23 @@ public class FuramaController {
 			System.out.println("\t Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
 			switch (choice) {
 			case 1:
-				
+
 				break;
 			case 2:
-				
-				break;
-			case 3:
-				displayMainMenu();
+
 				break;
 			default:
 				break;
 			}
+			if(choice == 3) {
+				break;
 			}
+		}
 	}
 }
-

@@ -6,8 +6,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import case_study.model.Validator;
 import case_study.service.impl.IPersonService;
+import case_study.util.Validator;
 
 public class PersonService implements IPersonService {
 	private Scanner sc = new Scanner(System.in);

@@ -1,6 +1,5 @@
 package case_study.service;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -9,19 +8,20 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import case_study.model.Employee;
-import case_study.model.Validator;
 import case_study.repository.EmployeeRepository;
 import case_study.service.impl.IEmployeeService;
+import case_study.util.Validator;
 
 public class EmployeeService extends PersonService implements IEmployeeService {
 	public Scanner sc = new Scanner(System.in);
 	public static List<Employee> employees = new ArrayList<>();
 	public static List<String> employeeIds = new ArrayList<>();
+	private static EmployeeRepository er = new EmployeeRepository();
 
 	@Override
 	public void display() {
 		System.out.println("---------- Employee List ---------------");
-		for (Employee e : employees) {
+		for (Employee e : EmployeeService.employees) {
 			System.out.println(e);
 			System.out.println("=====>");
 		}
@@ -31,16 +31,7 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 
 	@Override
 	public void create() {
-		boolean isExist = false;
-		String employeeId = null;
-		while(!isExist) {
-			employeeId = enterEmployeeId();
-			if(checkEmployeeId(employeeId)) {
-				System.out.println("ID has Exist ! please re-enter new id");
-			}else {
-				isExist = true;
-			}
-		}
+		String employeeId = enterEmployeeId();
 		String fullName = enterFullName("Employee Name :");
 		Calendar dateOfBirth = enterdateOfBirth();
 		String identityCard = enterIdentityCard();
@@ -49,10 +40,10 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 		String qualification = enterQualification();
 		String position = enterPosition();
 		int salary = enterSalary();
-		Employee e = new Employee(fullName, dateOfBirth, identityCard, phoneNumber, email, employeeId, qualification, position, salary);
+		Employee e = new Employee(fullName, dateOfBirth, identityCard, phoneNumber, email, employeeId, qualification,
+				position, salary);
 		employees.add(e);
 		employeeIds.add(employeeId);
-		EmployeeRepository er =new EmployeeRepository();
 		er.saveDataToFile();
 	}
 
@@ -60,20 +51,21 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 	public void edit() {
 		boolean isExist = false;
 		String employeeId = null;
-		while(!isExist) {
+		while (!isExist) {
 			employeeId = enterEmployeeId();
-			if(!checkEmployeeId(employeeId)) {
+			if (!checkEmployeeId(employeeId)) {
 				System.out.println("ID not Exist ! please re-enter");
-			}else {
+			} else {
 				isExist = true;
 			}
 		}
-		for(Employee e:employees) {
-			if(e.getEmployeeId().equals(employeeId)) {
+		for (Employee e : employees) {
+			if (e.getEmployeeId().equals(employeeId)) {
 				displayMenuEdit(e);
 			}
 		}
 		
+
 	}
 
 	@Override
@@ -87,10 +79,15 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 		while (true) {
 			System.out.println("Enter employee id (NV-XXXX): ");
 			employeeIdstr = sc.nextLine();
-			if(employeeIdstr.isEmpty()) {
+			if (employeeIdstr.isEmpty()) {
 				System.out.println("The input is empty !Please re-enter\"");
-			}else if (employeeIdstr.matches(Validator.REGEX_EMPLOYEE_ID)) {
-				return employeeIdstr;
+			} else if (employeeIdstr.matches(Validator.REGEX_EMPLOYEE_ID)) {
+				if(checkEmployeeId(employeeIdstr)) {
+					System.out.println("The Id has exist ! Please enter new Id!!");
+				}else {
+					return employeeIdstr;
+					
+				}
 			} else {
 				System.out.println("The employee id you just entered is  invalid !Please re-enter");
 			}
@@ -99,8 +96,8 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 	}
 
 	public String enterQualification() {
-		int choice =0;
-		while(true) {
+		int choice = 0;
+		while (true) {
 			Scanner newSc = new Scanner(System.in);
 			System.out.println("======>>> Qualification");
 			System.out.println("1.Intermediate");
@@ -110,7 +107,7 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			System.out.println("Select choice :");
 			try {
 				choice = newSc.nextInt();
-				
+
 			} catch (InputMismatchException e) {
 				System.out.println("Input Wrong!Please re-enter");
 				continue;
@@ -119,26 +116,26 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			case 1:
 				return "Intermediate";
 			case 2:
-				
+
 				return "College";
 			case 3:
-				
+
 				return "Undergraduate";
 			case 4:
-				
+
 				return "Graduate";
 
 			default:
 				System.out.println("You must select 1 to 4 ! Please re-enter ");
 				break;
 			}
-			
+
 		}
 	}
 
 	public String enterPosition() {
-		int choice =0;
-		while(true) {
+		int choice = 0;
+		while (true) {
 			Scanner newSc = new Scanner(System.in);
 			System.out.println("======>>> Qualification");
 			System.out.println("1.Receptionist");
@@ -150,7 +147,7 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			System.out.println("Select choice :");
 			try {
 				choice = newSc.nextInt();
-				
+
 			} catch (InputMismatchException e) {
 				System.out.println("Input Wrong!Please re-enter");
 				continue;
@@ -159,26 +156,26 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			case 1:
 				return "Receptionist";
 			case 2:
-				
+
 				return "Waiter";
 			case 3:
-				
+
 				return "Specialist";
 			case 4:
-				
+
 				return "Supervisor";
 			case 5:
-				
+
 				return "Manager";
 			case 6:
-				
+
 				return "Director";
 
 			default:
 				System.out.println("You must select 1 to 6 ! Please re-enter ");
 				break;
 			}
-			
+
 		}
 	}
 
@@ -196,29 +193,30 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 				System.out.println("Input is Empty!Please re-enter");
 				continue;
 			}
-			
-			if(salary>0) {
+
+			if (salary > 0) {
 				return salary;
-			}else {
+			} else {
 				System.out.println("Salary must greater than 0");
 			}
-			
 
 		}
 
 	}
+
 	public boolean checkEmployeeId(String employeeId) {
-		for(String eId:employeeIds) {
-			if(employeeId.equals(eId)) {
+		for (String eId : employeeIds) {
+			if (employeeId.equals(eId)) {
 				return true;
 			}
 		}
 		return false;
-		
+
 	}
+
 	public void displayMenuEdit(Employee currentEmployee) {
 		int choice = 0;
-		while(true) {
+		while (true) {
 			System.out.println("============== Edit ===================");
 			System.out.println("1. Name");
 			System.out.println("2. Date of Birth");
@@ -233,7 +231,7 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 			System.out.println(" Enter your choice :");
 			try {
 				choice = Integer.parseInt(sc.nextLine());
-				
+
 			} catch (NumberFormatException e) {
 				System.out.println("Wrong input ! please enter again !");
 			}
@@ -277,19 +275,23 @@ public class EmployeeService extends PersonService implements IEmployeeService {
 				currentEmployee.setSalary(newSalary);
 				System.out.println("==> Edited ");
 				break;
+			case 9:
+				break;
 
 			default:
 				System.out.println("You must choice 1 to 9 ! please re-enter");
 				break;
 			}
-			if(choice == 9) {
+			if (choice == 9) {
+				er.saveDataToFile();
 				break;
 			}
 		}
+
 	}
+
 	public static void getData() {
-		EmployeeRepository ep = new EmployeeRepository();
-		ep.readData();
+		er.readData();
 	}
 
 }
