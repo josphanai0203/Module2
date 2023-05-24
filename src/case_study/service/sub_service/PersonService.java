@@ -1,4 +1,4 @@
-package case_study.service;
+package case_study.service.sub_service;
 
 import java.util.Calendar;
 import java.util.Scanner;

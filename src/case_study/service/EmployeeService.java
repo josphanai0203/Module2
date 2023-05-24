@@ -10,6 +10,7 @@ import java.util.Scanner;
 import case_study.model.Employee;
 import case_study.repository.EmployeeRepository;
 import case_study.service.impl.IEmployeeService;
+import case_study.service.sub_service.PersonService;
 import case_study.util.Validator;
 
 public class EmployeeService extends PersonService implements IEmployeeService {

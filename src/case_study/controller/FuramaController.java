@@ -4,17 +4,19 @@ import java.util.Scanner;
 
 import case_study.service.CustomerService;
 import case_study.service.EmployeeService;
+import case_study.service.FacilityService;
 
 public class FuramaController {
 	private static boolean isReadData = false;
 	private static EmployeeService es = new EmployeeService();
 	private static CustomerService cs = new CustomerService();
-	
+	private static FacilityService fs = new FacilityService();
 
 	public void displayMainMenu() {
 		if (!isReadData) {
 			EmployeeService.getData();
 			CustomerService.getData();
+			FacilityService.getData();
 			isReadData = true;
 		}
 		int choice = 0;
@@ -52,14 +54,14 @@ public class FuramaController {
 			case 5:
 				displayPromotionManagement();
 				break;
-
+			case 6:
+				break;
 			default:
 				System.out.println("Your choice is Wrong !  please enter again !");
 				break;
 			}
 			if (choice == 6) {
 				System.exit(0);
-				;
 				break;
 			}
 		}
@@ -95,7 +97,7 @@ public class FuramaController {
 			default:
 				break;
 			}
-			if(choice == 4) {
+			if (choice == 4) {
 				break;
 			}
 		}
@@ -131,7 +133,7 @@ public class FuramaController {
 			default:
 				break;
 			}
-			if(choice == 4) {
+			if (choice == 4) {
 				break;
 			}
 		}
@@ -142,9 +144,9 @@ public class FuramaController {
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("============== Facility Management   ===================");
-			System.out.println("1.	Display list customers");
-			System.out.println("2.	Add new customer");
-			System.out.println("3.	Edit customer");
+			System.out.println("1	Display list facility");
+			System.out.println("2	Add new facility");
+			System.out.println("3	Display list facility maintenance");
 			System.out.println("4.	Return main menu");
 			System.out.println("============== END ====================");
 			System.out.println("\t Enter your choice :");
@@ -156,10 +158,10 @@ public class FuramaController {
 			}
 			switch (choice) {
 			case 1:
-
+				fs.display();
 				break;
 			case 2:
-
+				fs.create();
 				break;
 			case 3:
 
@@ -167,7 +169,7 @@ public class FuramaController {
 			default:
 				break;
 			}
-			if(choice == 4) {
+			if (choice == 4) {
 				break;
 			}
 		}
@@ -211,7 +213,7 @@ public class FuramaController {
 			default:
 				break;
 			}
-			if(choice == 6) {
+			if (choice == 6) {
 				break;
 			}
 		}
@@ -243,7 +245,7 @@ public class FuramaController {
 			default:
 				break;
 			}
-			if(choice == 3) {
+			if (choice == 3) {
 				break;
 			}
 		}

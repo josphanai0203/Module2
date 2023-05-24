@@ -9,6 +9,7 @@ import java.util.Scanner;
 import case_study.model.Customer;
 import case_study.repository.CustomerRepository;
 import case_study.service.impl.ICustomerService;
+import case_study.service.sub_service.PersonService;
 import case_study.util.Validator;
 
 public class CustomerService extends PersonService implements ICustomerService {
